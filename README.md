@@ -10,7 +10,7 @@
 
 ```supercollider
 // install the quark
-Quarks.install("https://github.com/claudiopanariello/SuperScore")
+Quarks.install("https://github.com/claudiopanariello/sscna")
 
 // recompile
 thisProcess.recompile;
