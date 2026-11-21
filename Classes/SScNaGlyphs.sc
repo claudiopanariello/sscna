@@ -1,27 +1,24 @@
 /**********************************************************************
-SScNAGlyphs
-SMuFL glyph lookup for SuperScore.
+SScNAglyphs
+SMuFL glyph lookup for SScNA.
 
 Uses MITHUnicode (Tom Hall, GPL-3) for codepoint -> UTF-8 conversion:
 https://github.com/ludions/scbook-2nd-edn/tree/main/26.2
 Glyph names: SMuFL glyphnames.json, https://github.com/w3c/smufl/tree/gh-pages/metadata
 
-Claudio Panariello
-Email: 	claudio@claudiopanariello.com
-URL:	https://claudiopanariello.com/
 **********************************************************************/
 
-SScNAGlyphs {
+SScNAglyphs {
 	classvar <glyphs, <accidentalForDeviation;
 
 	*load { |glyphnamesPath|
 		var parsed;
 		if(\MITHUnicode.asClass.isNil) {
-			"SScNaGlyphs: MITHUnicode not installed, loading fallback glyphs. Pray for the best".warn;
+			"SScNAglyphs: MITHUnicode not installed, loading fallback glyphs. Pray for the best".warn;
 			^this.loadFallback;
 		};
 		if(glyphnamesPath.isNil or: { File.exists(glyphnamesPath).not }) {
-			"SScNaGlyphs: glyphnames.json not found, loading fallback glyphs. Pray for the best.".warn;
+			"SScNAglyphs: glyphnames.json not found, loading fallback glyphs. Pray for the best.".warn;
 			^this.loadFallback;
 		};
 		parsed = File.readAllString(glyphnamesPath).parseJSON;
@@ -29,7 +26,7 @@ SScNAGlyphs {
 		parsed.keysValuesDo { |name, info|
 			glyphs.put(name.asSymbol, info["codepoint"].asGlyph);
 		};
-		format("SScNaGlyphs: % glyphs loaded.", glyphs.size).postln;
+		format("SScNAglyphs: % glyphs loaded.", glyphs.size).postln;
 		this.initAccidentals;
 	}
 
@@ -122,7 +119,7 @@ SScNAGlyphs {
 		// safety check
 		accidentalForDeviation.keysValuesDo { |dev, name|
 			if(glyphs[name].isNil) {
-				format("SScNaGlyphs: accidentalForDeviation[%] -> '%' not found", dev, name).warn;
+				format("SScNAglyphs: accidentalForDeviation[%] -> '%' not found", dev, name).warn;
 			};
 		};
 	}
@@ -130,7 +127,7 @@ SScNAGlyphs {
 	*at { |name|
 		if(glyphs.isNil) { this.load };
 		^glyphs.atFail(name.asSymbol, {
-			format("SScNaGlyphs: glyph '%' not found", name).warn;
+			format("SScNAglyphs: glyph '%' not found", name).warn;
 		});
 	}
 
