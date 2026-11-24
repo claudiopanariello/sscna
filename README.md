@@ -27,7 +27,7 @@ Install them system-wide, then restart SuperCollider.
 
 For a smoother handling of the glyphs, SScNA also requires `MITHUnicode`, available [here](https://github.com/ludions/scbook-2nd-edn/tree/main). It will need json files of the glyphs as well (these are included in this repository).
 
-**CAVEAT**: if `MITHUnicode` is not installed, SuperScore will try to load the (a selection of) the glyphs the hard way.
+**CAVEAT**: if `MITHUnicode` is not installed, SScNA will try to load the (a selection of) the glyphs the hard way.
 
 ## License
 
